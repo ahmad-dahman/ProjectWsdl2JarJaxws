@@ -1,0 +1,12 @@
+com\example\calculator\package-info.class
+com\example\calculator\CalculatorSoap.class
+com\example\calculator\AddResponse.class
+com\example\calculator\Add.class
+com\example\calculator\Calculator.class
+com\example\calculator\SubtractResponse.class
+com\example\calculator\Divide.class
+com\example\calculator\ObjectFactory.class
+com\example\calculator\Subtract.class
+com\example\calculator\MultiplyResponse.class
+com\example\calculator\Multiply.class
+com\example\calculator\DivideResponse.class

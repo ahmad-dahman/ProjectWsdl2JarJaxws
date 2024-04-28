@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:sch0="http://lhsgroup.com/lhsws/money" xmlns:sch1="http://lhsgroup.com/lhsws/svlany" xmlns:sch2="http://ericsson.com/services/ws_CIL_7/sessionchange" xmlns:sch3="http://ericsson.com/services/ws_CIL_7/userrightcheck" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://ericsson.com/services/ws_CIL_7" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://ericsson.com/services/ws_CIL_7">
+  <wsdl:types>
+    <xs:schema xmlns:lhsws="http://lhsgroup.com/lhsws/money" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://lhsgroup.com/lhsws/money"><xs:complexType name="money"><xs:sequence><xs:element name="amount" type="xs:double"/><xs:element name="currency" type="xs:string"/></xs:sequence></xs:complexType></xs:schema>
+    <xs:schema xmlns:lhsws="http://lhsgroup.com/lhsws/svlany" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://lhsgroup.com/lhsws/svlany"><xs:complexType name="svlany"><xs:sequence><xs:element name="content" type="xs:string"/></xs:sequence></xs:complexType></xs:schema>
+    <xs:schema xmlns:ericsson="http://ericsson.com/schemas" xmlns:wsi="http://ericsson.com/services/ws_CIL_7/sessionchange" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ericsson.com/services/ws_CIL_7/sessionchange"><xs:complexType name="sessionChangeResponse"/><xs:complexType name="valuesListpartRequest"><xs:all><xs:element name="key" type="xs:string"><xs:annotation><xs:documentation>
+													&lt;p&gt; Name of the value that shall be changed. See release dependent documentation for supported keys&lt;/p&gt;
+												</xs:documentation></xs:annotation></xs:element><xs:element name="value" type="xs:string"><xs:annotation><xs:documentation>
+													&lt;p&gt;New value for a named value.&lt;/p&gt;
+												</xs:documentation></xs:annotation></xs:element></xs:all></xs:complexType><xs:complexType name="valuesRequest"><xs:annotation><xs:documentation>
+								&lt;p&gt;A list of all named values that shall be changed with this command.&lt;/p&gt;
+							</xs:documentation></xs:annotation><xs:sequence><xs:element maxOccurs="unbounded" name="item" type="wsi:valuesListpartRequest"/></xs:sequence></xs:complexType><xs:complexType name="sessionChangeRequest"><xs:annotation><xs:documentation>
+					&lt;p&gt;
+					
+					&lt;/p&gt;
+				</xs:documentation></xs:annotation><xs:all><xs:element minOccurs="0" name="values" type="wsi:valuesRequest"/></xs:all></xs:complexType></xs:schema>
+    <xs:schema xmlns:ericsson="http://ericsson.com/schemas" xmlns:sessionchange="http://ericsson.com/services/ws_CIL_7/sessionchange" xmlns:wsi="http://ericsson.com/services/ws_CIL_7/userrightcheck" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://ericsson.com/services/ws_CIL_7/userrightcheck"><xs:import namespace="http://ericsson.com/services/ws_CIL_7/sessionchange"/><xs:element name="userRightCheckRequest" type="wsi:userRightCheckRequest"/><xs:element name="userRightCheckResponse" type="wsi:userRightCheckResponse"/><xs:complexType name="roleDTO"><xs:all><xs:element minOccurs="0" name="id" type="xs:long"><xs:annotation><xs:documentation>
+																&lt;p&gt;Internal id of the role&lt;/p&gt;
+															</xs:documentation></xs:annotation></xs:element><xs:element minOccurs="0" name="name" type="xs:string"><xs:annotation><xs:documentation>
+																&lt;p&gt;Name and public key of the role&lt;/p&gt;
+															</xs:documentation></xs:annotation></xs:element></xs:all></xs:complexType><xs:complexType name="rolesResponse"><xs:annotation><xs:documentation>
+											&lt;p&gt;
+											&lt;/p&gt;
+										</xs:documentation></xs:annotation><xs:sequence><xs:element maxOccurs="unbounded" minOccurs="0" name="roleDTO" type="wsi:roleDTO"/></xs:sequence></xs:complexType><xs:complexType name="userPermissionsResponse"><xs:annotation><xs:documentation>
+											&lt;p&gt;Permission which is granted to the current user&lt;/p&gt;
+										</xs:documentation></xs:annotation><xs:sequence><xs:element maxOccurs="unbounded" minOccurs="0" name="userPermission" type="xs:string"/></xs:sequence></xs:complexType><xs:complexType name="userRightCheckOutputDTO"><xs:all><xs:element minOccurs="0" name="accessRightValidityPeriod" type="xs:long"><xs:annotation><xs:documentation>
+										&lt;p&gt;Number of seconds (not time!) specifying how long information about access rights is valid.
+										When PERIOD_OF_VALIDITY expires clients of SECURITY SOI should call USER_RIGHT.CHECK again
+										to refresh this information
+										&lt;/p&gt;
+									</xs:documentation></xs:annotation></xs:element><xs:element minOccurs="0" name="username" type="xs:string"><xs:annotation><xs:documentation>
+										&lt;p&gt;Well-known username. Together with PASSWORD used to authenticate a user.&lt;/p&gt;
+									</xs:documentation></xs:annotation></xs:element><xs:element minOccurs="0" name="accessRights" type="wsi:userPermissionsResponse"/><xs:element minOccurs="0" name="roles" type="wsi:rolesResponse"/></xs:all></xs:complexType><xs:complexType name="userRightCheckResponse"><xs:all><xs:element minOccurs="0" name="userRightCheckOutputDTO" type="wsi:userRightCheckOutputDTO"/></xs:all></xs:complexType><xs:complexType name="requestedPermissionsRequest"><xs:annotation><xs:documentation>
+											&lt;p&gt;Element of the permissions hierarchy to check&lt;/p&gt;
+										</xs:documentation></xs:annotation><xs:sequence><xs:element maxOccurs="unbounded" minOccurs="0" name="permission" type="xs:string"/></xs:sequence></xs:complexType><xs:complexType name="loginInfoElement"><xs:all><xs:element minOccurs="0" name="key" type="xs:string"><xs:annotation><xs:documentation>
+																&lt;p&gt;Element of the permissions hierarchy to check&lt;/p&gt;
+															</xs:documentation></xs:annotation></xs:element><xs:element minOccurs="0" name="value" type="xs:string"><xs:annotation><xs:documentation>
+																&lt;p&gt;Element of the permissions hierarchy to check&lt;/p&gt;
+															</xs:documentation></xs:annotation></xs:element></xs:all></xs:complexType><xs:complexType name="loginInformationRequest"><xs:annotation><xs:documentation>
+											&lt;p&gt;&lt;/p&gt;
+										</xs:documentation></xs:annotation><xs:sequence><xs:element maxOccurs="unbounded" minOccurs="0" name="loginInfoElement" type="wsi:loginInfoElement"/></xs:sequence></xs:complexType><xs:complexType name="userRightCheckInputDTO"><xs:all><xs:element minOccurs="0" name="username" type="xs:string"><xs:annotation><xs:documentation>
+										&lt;p&gt;Well-known username. Together with PASSWORD used to authenticate a user.&lt;/p&gt;
+									</xs:documentation></xs:annotation></xs:element><xs:element minOccurs="0" name="password" type="xs:string"><xs:annotation><xs:documentation>
+										&lt;p&gt;Password should be specified only together with USERNAME argument. Could be ommited if NO_PASSWORD_REQUIRED flag is set to 'True'.&lt;/p&gt;
+									</xs:documentation></xs:annotation></xs:element><xs:element minOccurs="0" name="loginInformation" type="wsi:loginInformationRequest"/><xs:element minOccurs="0" name="noPasswordRequired" type="xs:boolean"><xs:annotation><xs:documentation>
+										&lt;p&gt;
+										Allows to check permissions of a user without to know his password -
+										when this flag is set then then no user authentication performed,
+										and PASSWORD argument should not be set.
+										'PermChangeOnBehalfOfUser' should be granted to the user who calls
+										USER_RIGHT.CHECK with this flag set.
+										&lt;/p&gt;
+									</xs:documentation></xs:annotation></xs:element><xs:element minOccurs="0" name="requestedPermissions" type="wsi:requestedPermissionsRequest"/></xs:all></xs:complexType><xs:complexType name="inputAttributes"><xs:all><xs:element minOccurs="0" name="userRightCheckInputDTO" type="wsi:userRightCheckInputDTO"/></xs:all></xs:complexType><xs:complexType name="userRightCheckRequest"><xs:all><xs:element minOccurs="0" name="inputAttributes" type="wsi:inputAttributes"/><xs:element minOccurs="0" name="sessionChangeRequest" type="sessionchange:sessionChangeRequest"/></xs:all></xs:complexType></xs:schema>
+  </wsdl:types>
+  <wsdl:message name="userRightCheckResponse">
+    <wsdl:part element="sch3:userRightCheckResponse" name="userRightCheckResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="userRightCheckRequest">
+    <wsdl:part element="sch3:userRightCheckRequest" name="userRightCheckRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserRightCheckService">
+    <wsdl:operation name="userRightCheck">
+<wsdl:documentation>&lt;![CDATA[&lt;p&gt;Performs user authentication (optionally) and 
+  check specified access permissions (including child permissions) 
+  for a user&lt;/p&gt;&lt;p&gt;There are three different modes of this command:&lt;/p&gt;&lt;p&gt;1. This command works with already authenticated current user 
+  (USERNAME, PASSWORD, NO_PASSWORD_REQUIRED arguments are omitted). 
+  No user authentication performed in this mode.
+  Permissions of the current user are returned.
+  &lt;/p&gt;&lt;p&gt;2. USERNAME argument is set. PASSWORD is set. 
+  NO_PASSWORD_REQUIRED is not set.
+  The USER will be authenticated first; if combination USERNAME/PASSWORD 
+  isn't valid than a SecurityExceptionI  will be thrown.
+  Permissions of the USERNAME are returned.
+  &lt;/p&gt;&lt;p&gt;3. USERNAME argument is set. PASSWORD is not set. NO_PASSWORD_REQUIRED flag is set. 
+  The command works with specified USERNAME but no user authentication performed 
+  in this mode.
+  In order to use USER_RIGHT.CHECK in this mode a special permission 
+  'PermChangeOnBehalfOfUser' should be granted to the user who calls
+  USER_RIGHT.CHECK. (There is one exception from this rule: the SOI system user
+  doesn't need 'PermChangeOnBehalfOfUser' in order to use this command in this mode)
+  Permissions of the USERNAME are returned.
+  &lt;/p&gt;&lt;p&gt;For each requested permission in the REQUESTED_PERMISSIONS argument 
+  this command returns 0 or more permissions
+  (including granted child permissions) granted to the user. Permissions of the user are returned
+  in one list without hierarchy. 
+  An empty list of requested permissions produces empty output list.
+  &lt;/p&gt;]]&gt;</wsdl:documentation>
+      <wsdl:input message="tns:userRightCheckRequest" name="userRightCheckRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:userRightCheckResponse" name="userRightCheckResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserRightCheckServiceSoap11" type="tns:UserRightCheckService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="userRightCheck">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="userRightCheckRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="userRightCheckResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserRightCheckService">
+    <wsdl:port binding="tns:UserRightCheckServiceSoap11" name="UserRightCheckServiceSoap11">
+      <soap:address location="http://192.168.10.95:13001/wsi/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SmsWs" />
+        <module name="GrhHandling" />
+        <module name="Calculator" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ContractHandling" target="17" />
+      <module name="CustomerHandling" target="17" />
+      <module name="InBuyOptionPooling" target="17" />
+      <module name="ProjectWsdl2JarJaxws" target="17" />
+      <module name="PromotionHandling11" target="17" />
+      <module name="SmsWs" target="17" />
+      <module name="TicklerNew" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
